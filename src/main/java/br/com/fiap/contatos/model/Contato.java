@@ -10,6 +10,6 @@ import lombok.Data;
 @Data
 public class Contato {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    Long id;
     String nome;
 }

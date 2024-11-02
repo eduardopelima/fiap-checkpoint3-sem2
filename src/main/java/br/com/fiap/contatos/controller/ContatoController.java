@@ -1,0 +1,10 @@
+package br.com.fiap.contatos.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("contato")
+public class ContatoController {
+    
+}
