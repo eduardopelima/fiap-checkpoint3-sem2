@@ -10,7 +10,7 @@ import br.com.fiap.contatos.model.Contato;
 import br.com.fiap.contatos.repository.ContatoRepository;
 
 @Service
-public class CotatoService {
+public class ContatoService {
 
     @Autowired
     ContatoRepository contatoRepository;
@@ -19,7 +19,7 @@ public class CotatoService {
         return contatoRepository.findAll();
     }
 
-    public Optional<Contato> findByID(long id) {
+    public Optional<Contato> findById(long id) {
         return contatoRepository.findById(id);
     } 
 
