@@ -10,8 +10,11 @@ import br.com.fiap.contatos.dtos.ContatoRequestCreateDto;
 import br.com.fiap.contatos.dtos.ContatoRequestUpdateDto;
 import br.com.fiap.contatos.dtos.ContatoResponseDto;
 import br.com.fiap.contatos.mapper.ContatoMapper;
+import br.com.fiap.contatos.repository.ContatoRepository;
 import br.com.fiap.contatos.service.ContatoService;
 import lombok.RequiredArgsConstructor;
+import br.com.fiap.contatos.views.ContatoViewType;
+import br.com.fiap.contatos.views.ContatoSimpleView;
 
 @RestController
 @RequestMapping("contatos")
@@ -20,6 +23,7 @@ public class ContatoController {
 
     private final ContatoService contatoService;
     private final ContatoMapper contatoMapper;
+    private final ContatoRepository contatoRepository;
 
     @GetMapping
     public ResponseEntity<List<ContatoResponseDto>> list() {
@@ -74,4 +78,17 @@ public class ContatoController {
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new RuntimeException("Id inexistente"));
     }
+
+    @GetMapping("/find")
+    public  ResponseEntity<?> findByNome(
+                @RequestParam String nome, 
+                ContatoViewType type) { 
+
+        switch (type) {
+            case SIMPLE:
+                return ResponseEntity.ok().body(contatoRepository.findAllByNomeContains(nome, ContatoSimpleView.class));            
+        }
+        return ResponseEntity.noContent().build();
+    }
+
 }

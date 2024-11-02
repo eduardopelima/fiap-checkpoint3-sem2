@@ -35,8 +35,4 @@ public class ContatoService {
         contatoRepository.deleteById(id);
     }
 
-    public List<Contato> findByName(String nome) {
-        return contatoRepository.findByNameContaining(nome);
-    }
-    
 }

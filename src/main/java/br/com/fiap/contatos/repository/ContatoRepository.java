@@ -9,5 +9,7 @@ import br.com.fiap.contatos.model.Contato;
 
 @Repository
 public interface ContatoRepository extends JpaRepository<Contato, Long> {
-    List<Contato> findByNameContaining(String nome);
+    <T> T findByNome(String nome, Class<T> type);
+	<T> List<T> findAllByNome(String nome, Class<T> type);
+	<T> List<T> findAllByNomeContains(String nome, Class<T> type);
 }
